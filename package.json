@@ -16,7 +16,6 @@
     "prod:logs": "pm2 logs --update-env traffic_checkProd",
     "test": "jest",
     "verify-tests": "jest --coverage"
-    
   },
   "jest": {
     "modulePaths": [
