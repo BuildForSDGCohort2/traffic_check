@@ -15,8 +15,8 @@
     "prod:reload": "pm2 reload --update-env traffic_checkProd",
     "prod:logs": "pm2 logs --update-env traffic_checkProd",
     "test": "jest",
-    "verify-tests": "jest --coverage",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "verify-tests": "jest --coverage"
+    
   },
   "jest": {
     "modulePaths": [
