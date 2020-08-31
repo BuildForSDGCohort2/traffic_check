@@ -1,0 +1,2 @@
+# traffic_check
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bac7f5eddce04e66a1d4fc4722088dd4)](https://app.codacy.com/gh/BuildForSDGCohort2/traffic_check?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDGCohort2/traffic_check&utm_campaign=Badge_Grade_Settings)
