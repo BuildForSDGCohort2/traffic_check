@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import serialize from 'serialize-javascript';
+//import compression from 'compression';
 
 import config from 'server/config';
 import { serverRenderer } from 'renderers/server';
