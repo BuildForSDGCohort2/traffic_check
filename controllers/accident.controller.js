@@ -2,15 +2,6 @@ const uuid = require("uuid-mongodb");
 const mUUID4 = uuid.v4();
 const Accident = require("../models/accident.model");
 
-function getSequenceNextValue(seqName) {
-  var seqDoc = db.student.findAndModify({
-    query: { _id: seqName },
-    update: { $inc: { seqValue: 1 } },
-    new: true
-  });
-
-  return seqDoc.seqValue;
-}
 module.exports = {
   async createAccidentCase(req, res) {
     const {
