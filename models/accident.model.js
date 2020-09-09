@@ -22,6 +22,7 @@ const accidentSchema = new schema(
     },
     reported_time: {
       type: Date,
+      default: Date.now,
       required: false,
     },
     location: {
