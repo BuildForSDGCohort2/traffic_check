@@ -21,7 +21,8 @@ mongoose
 // Hello World
 
 app.get("/", (req, res) => {
-  return res.send({ message: new Tweet().follow() });
+  // return res.send({ message: new Tweet().follow() });
+  return res.send({message: "Welcome home"})
 });
 
 let accidentRoute = require("./routes/accident.route");
