@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+// const uniqueValidator = require('mongoose-unique-validator');
 
 const schema = mongoose.Schema; 
 
@@ -74,7 +74,7 @@ const hospitalSchema = new schema(
 );
 
 
-hospitalSchema.plugin(uniqueValidator);
+// hospitalSchema.plugin(uniqueValidator);
 const hospitalModel = mongoose.model('hospital', hospitalSchema, 'hospital');
 
 module.exports = hospitalModel;

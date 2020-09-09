@@ -1,62 +1,61 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require("mongoose");
+//const uniqueValidator = require("mongoose-unique-validator");
 
 
-const schema = mongoose.Schema; 
+const schema = mongoose.Schema;
 // Create a schema;
 const accidentSchema = new schema(
   {
     case_id: {
       type: String,
-      unique: true
+      unique: true,
     },
     no_of_victims: {
       type: String,
       required: true,
-      unique: false
-    },  
+      unique: false,
+    },
     device_type: {
       type: String,
       required: true,
-      unique:false
+      unique: false,
     },
     reported_time: {
       type: Date,
-      required: true
+      required: false,
     },
     location: {
-      submitted_location:{
-        type:String,
-        required:true
+      submitted_location: {
+        type: String,
+        required: true,
       },
-      latitude:{
+      latitude: {
         type: Number,
-        required:false
+        required: false,
       },
-      longitude:{
-        type:Number,
-        required:false
-      }
+      longitude: {
+        type: Number,
+        required: false,
+      },
     },
     weather_type: {
       type: String,
-      required: false
+      required: false,
     },
-    description:{
-      type:String,
-      required:false
-    }
+    description: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: {
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt'
-    }
+      createdAt: "createdAt",
+      updatedAt: "updatedAt",
+    },
   }
 );
 
-
-accidentSchema.plugin(uniqueValidator);
-const accidentModel = mongoose.model('accident', accidentSchema, 'accident');
+//accidentSchema.plugin(uniqueValidator);
+const accidentModel = mongoose.model("accident", accidentSchema, "accident");
 
 module.exports = accidentModel;

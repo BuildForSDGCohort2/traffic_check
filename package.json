@@ -13,6 +13,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "promised-twit": "^0.1.0",
     "twit": "^2.2.11",
+    "uuid-mongodb": "^2.3.0",
     "uuidv4": "^6.2.3"
   },
   "devDependencies": {

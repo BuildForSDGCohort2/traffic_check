@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const uuid4 = require('uuidv4');
-const uniqueValidator = require('mongoose-unique-validator');
+const uuid = require("uuid-mongodb");
+const mUUID4 = uuid.v4();
 
 const schema = mongoose.Schema;
 
@@ -9,7 +9,7 @@ const adminSchema = new schema(
   {
     uid: {
       type: String,
-      default: uuid4(),
+      default: mUUID4,
       unique: true
     },
     first_name: {
@@ -63,7 +63,7 @@ adminSchema.methods.isPasswordValid = (password, savedPassword) => {
   return compare;
 };
 
-adminSchema.plugin(uniqueValidator);
+//adminSchema.plugin(uniqueValidator);
 const userModel = mongoose.model('admin', adminSchema, 'admin');
 
 module.exports = userModel;

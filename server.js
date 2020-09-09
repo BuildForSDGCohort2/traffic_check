@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 let accidentRoute = require("./routes/accident.route");
 const { onAuthenticated } = require("./modules/twitter");
 
-app.use("/v1/accident", accidentRoute);
+app.use("/api/v1", accidentRoute);
 
 // Form submit user
 /*
