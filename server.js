@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDb
 mongoose
-  .connect(mongoURI)
+  .connect(process.env.MONGODB_URI || mongoURI)
   .then(() => console.log("mongo DB connected.... and this is nice"))
   .catch((err) => console.log(err));
 
@@ -42,14 +42,14 @@ app.post('/user', (req, res)=>{
     return res.send({name: `Hello ${req.body.name}`});
   });
 */
-
+const port = process.env.PORT || the_port;
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {
   //Set static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
-const port = process.env.PORT || the_port;
+
 app.listen(port, () => console.log(`Server started on port ${port}`));
