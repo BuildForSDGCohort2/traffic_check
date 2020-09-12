@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 // Envronment variables destructuring
-const { mongoURI, PORT } = require("./config/key");
+const { mongoURI, the_port } = require("./config/key");
 
 const Tweet = require("./modules/twitter");
 
@@ -51,5 +51,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const port = process.env.PORT || the_port;
+app.listen(port, () => console.log(`Server started on port ${port}`));
