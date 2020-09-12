@@ -1,7 +1,7 @@
 const uuid = require("uuid-mongodb");
 const mUUID4 = uuid.v4();
 const Accident = require("../models/accident.model");
-const { findOne } = require("../models/accident.model");
+//const { findOne } = require("../models/accident.model");
 
 async function createAccidentCase(req, res) {
   const {
@@ -57,10 +57,11 @@ async function getAllAccidents(req, res) {
 
 async function findOneAccident(req, res) {
   let findAnAccident = await Accident.findOne({ _id: req.params.id });
+  let data = findAnAccident;
   try {
     res.status(201).json({
       status: "success",
-      findAnAccident,
+      data,
     });
   } catch (error) {
     res.status(404).json({
