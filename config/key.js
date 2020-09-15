@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").load();
+const dotenv = require("dotenv");
 const result = dotenv.config();
 if (result.error) {
   throw result.error;
