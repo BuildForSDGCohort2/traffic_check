@@ -54,12 +54,11 @@ async function getAllAccidents(req, res) {
 }
 
 async function findOneAccident(req, res) {
-  let findAnAccident = await Accident.findOne({ _id: req.params.id });
-  let data = findAnAccident;
+  let findAnAccident = await Accident.findOne({ _id: req.params.id });  
   try {
     res.status(201).json({
       status: "success",
-      data,
+      findAnAccident,
     });
   } catch (error) {
     res.status(404).json({

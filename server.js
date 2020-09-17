@@ -5,7 +5,6 @@ const path = require("path");
 const compression = require("compression");
 const morgan = require("morgan");
 
-
 // Envronment variables destructuring
 // const { mongoURI, the_port } = require("./config/key");
 const mongoURI =
@@ -17,7 +16,8 @@ const Tweet = require("./modules/twitter");
 const app = express();
 
 // Body parser middleware
-// app.use(bodyParser.json());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // const dev = app.get("env") !== "production";
 
@@ -34,11 +34,11 @@ mongoose
 //  return res.send({ message: "Welcome home" });
 //});
 
-let accidentRoute = require("./routes/accident.route");
+let routes = require("./routes");
 // let itemRoute = require("./routes/item");
 const { onAuthenticated } = require("./modules/twitter");
 
-app.use("/api/v1", accidentRoute);
+app.use("/api/v1", routes);
 
 const port = process.env.PORT || the_port;
 // Server static assets if in production
