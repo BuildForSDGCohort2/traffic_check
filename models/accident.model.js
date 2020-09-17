@@ -5,6 +5,7 @@ const schema = mongoose.Schema;
 // Create a schema;
 const accidentSchema = new schema(
   {
+    
     no_of_victims: {
       type: String,
       required: true,

@@ -32,7 +32,11 @@
     "start": "node server.js",
     "server": "node server.js",
     "client": "npm start --prefix client",
+<<<<<<< HEAD
     "dev": "nodemon server.js"
+=======
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+>>>>>>> 86c3ee682bf2158ad41f3e519a0eaa40ffff2ab1
   },
   "repository": {
     "type": "git",
