@@ -40,12 +40,10 @@ async function createAccidentCase(req, res) {
 }
 
 async function getAllAccidents(req, res) {
-  let getAccidents = await Accident.find();
-
+  await Accident.find();
   try {
     res.status(201).json({
       status: "success",
-      getAccidents,
     });
   } catch (error) {
     res.status(404).json({
