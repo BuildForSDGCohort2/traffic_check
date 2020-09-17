@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
 //const uniqueValidator = require("mongoose-unique-validator");
 
-
 const schema = mongoose.Schema;
 // Create a schema;
 const accidentSchema = new schema(
   {
-    case_id: {
-      type: String,
-      unique: true,
-    },
     no_of_victims: {
       type: String,
       required: true,

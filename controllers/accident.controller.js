@@ -5,7 +5,6 @@ const Accident = require("../models/accident.model");
 
 async function createAccidentCase(req, res) {
   const {
-    case_id,
     no_of_victims,
     device_type,
     location,
@@ -16,7 +15,6 @@ async function createAccidentCase(req, res) {
 
   const newAccident = new Accident({
     description,
-    case_id: mUUID4,
     no_of_victims,
     device_type,
     reportedTime: Date.now(),
@@ -40,10 +38,12 @@ async function createAccidentCase(req, res) {
 }
 
 async function getAllAccidents(req, res) {
-  await Accident.find();
+  const accidents = await Accident.find();
+
   try {
     res.status(201).json({
       status: "success",
+      accidents,
     });
   } catch (error) {
     res.status(404).json({
