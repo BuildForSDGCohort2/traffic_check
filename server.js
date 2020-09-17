@@ -6,7 +6,10 @@ const compression = require("compression");
 const morgan = require("morgan");
 
 // Envronment variables destructuring
-const { mongoURI, the_port } = require("./config/key");
+// const { mongoURI, the_port } = require("./config/key");
+const mongoURI =
+  "mongodb+srv://odongolera:DZs7oHnbsYJ0WzxR@cluster0.kha1r.mongodb.net/test?retryWrites=true&w=majority";
+const the_port = 5000;
 
 const Tweet = require("./modules/twitter");
 
