@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create", createAccidentCase);
+router.post("/create-accident", createAccidentCase);
 router.get("/accidents", getAllAccidents);
 router.get("/accident/:id", findOneAccident);
 router.delete("/delete-accident/:id", deleteAccident)
