@@ -17,11 +17,8 @@ const comparePassword = (password, hashedPassword) => {
 };
 
 const isValidEmail = (email) => {
-  const testEmail = /\S+@\S+\.\S+/.test(email);
-  if (!testEmail) {
-    return "Invalid Email";
-  }
-  return email;
+  const testEmail = /\S+@\S+\.\S+/.test(email);  
+  return testEmail;
 };
 
 const generateToken = (User) => {

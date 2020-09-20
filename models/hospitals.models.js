@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-const uniqueValidator = require('mongoose-unique-validator');
-=======
 // const uniqueValidator = require('mongoose-unique-validator');
->>>>>>> reportAccident
 
 const schema = mongoose.Schema; 
 
