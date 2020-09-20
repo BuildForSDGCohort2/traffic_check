@@ -4,12 +4,10 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const compression = require("compression");
 const morgan = require("morgan");
+const envs = require("./config");
 
 // Envronment variables destructuring
 // const { mongoURI, the_port } = require("./config/key");
-const mongoURI =
-  "mongodb+srv://odongolera:DZs7oHnbsYJ0WzxR@cluster0.kha1r.mongodb.net/test?retryWrites=true&w=majority";
-const the_port = 5000;
 
 const Tweet = require("./modules/twitter");
 
@@ -23,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to MongoDb
 mongoose
-  .connect(process.env.MONGODB_URI || mongoURI)
+  .connect(process.env.MONGODB || envs.mongoURI)
   .then(() => console.log("mongo DB connected.... and this is nice"))
   .catch((err) => console.log(err));
 
@@ -35,12 +33,12 @@ mongoose
 //});
 
 let routes = require("./routes");
-// let itemRoute = require("./routes/item");
+
 const { onAuthenticated } = require("./modules/twitter");
 
 app.use("/api/v1", routes);
 
-const port = process.env.PORT || the_port;
+const port = process.env.PORT || envs.PORT;
 // Server static assets if in production
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
