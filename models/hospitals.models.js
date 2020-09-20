@@ -78,11 +78,7 @@ const hospitalSchema = new schema(
 );
 
 
-<<<<<<< HEAD
-hospitalSchema.plugin(uniqueValidator);
-=======
 // hospitalSchema.plugin(uniqueValidator);
->>>>>>> reportAccident
 const hospitalModel = mongoose.model('hospital', hospitalSchema, 'hospital');
 
 module.exports = hospitalModel;

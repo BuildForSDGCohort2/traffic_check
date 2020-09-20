@@ -20,7 +20,7 @@ router.post("/sign-up", signUp);
 router.get("/users", verifyJWTToken, getAllUsers);
 
 // Accident routes
-router.post("/incident", verifyJWTToken, createAccidentCase);
+router.post("/report_incident", verifyJWTToken, createAccidentCase);
 router.get("/incident/:id", verifyJWTToken, findOneAccident);
 router.get("/incidents", getAllAccidents);
 router.delete("/delete-incident:id", verifyJWTToken, admin, deleteAccident);
