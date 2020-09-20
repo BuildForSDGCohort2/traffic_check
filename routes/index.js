@@ -23,7 +23,7 @@ router.get("/users", verifyJWTToken, getAllUsers);
 router.post("/report_incident", verifyJWTToken, createAccidentCase);
 router.get("/incident/:id", verifyJWTToken, findOneAccident);
 router.get("/incidents", getAllAccidents);
-router.delete("/delete-incident:id", verifyJWTToken, admin, deleteAccident);
+router.delete("/delete_incident:id", verifyJWTToken, admin, deleteAccident);
 
 // SCRAP NTSA
 router.get("/scrap", getUrlsAndPush);
