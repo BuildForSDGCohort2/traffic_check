@@ -1,5 +1,5 @@
 const users = require("./users");
-const accidents = require("./accident.controller");
+const accidents = require("./accidents");
 
 module.exports = {
   users,
