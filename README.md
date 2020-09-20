@@ -40,3 +40,8 @@ Gets all the traffic incidents reported by users
 ### DELETE "/api/v1/delete_incident:id"
 
 Deletes any specific traffic incident.
+
+### HOSTING
+
+![Tux, the Linux mascot](/assets/images/tux.png)
+This backend is hosted at [Heroku](https://traffic-check.herokuapp.com/api/v1/incidents)
