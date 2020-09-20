@@ -43,5 +43,5 @@ Deletes any specific traffic incident.
 
 ### HOSTING
 
-![Tux, the Linux mascot](/assets/images/tux.png)
+![Tux, the Linux mascot](/images/tux.png)
 This backend is hosted at [Heroku](https://traffic-check.herokuapp.com/api/v1/incidents)
