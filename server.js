@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to MongoDb
 mongoose
-  .connect(process.env.MONGODB || envs.mongoURI)
+  .connect(process.env.MONGODB_URI || envs.mongoURI)
   .then(() => console.log("mongo DB connected.... and this is nice"))
   .catch((err) => console.log(err));
 
