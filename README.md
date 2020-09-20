@@ -25,7 +25,7 @@ Gets all users in the database. This operation is only possible if you are an ad
 
 ## Accident routes
 
-### POST "/api/v1/incident"
+### POST "/api/v1/report_incident"
 
 creates and accident case
 
@@ -37,6 +37,6 @@ gets one specific traffic incident
 
 Gets all the traffic incidents reported by users
 
-### DELETE "/api/v1/delete-incident:id"
+### DELETE "/api/v1/delete_incident:id"
 
 Deletes any specific traffic incident.
