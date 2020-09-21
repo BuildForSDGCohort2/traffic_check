@@ -141,7 +141,10 @@ async function tokenIsValid(req, res) {
 
 async function loggedInUser(req, res) {
   const user = await User.findById(req.user);
-  res.json(user);
+  res.json({
+    diplayName: user.username,
+    id: user._id;
+  });
 }
 module.exports = {
   signUp,
