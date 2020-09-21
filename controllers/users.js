@@ -143,7 +143,7 @@ async function loggedInUser(req, res) {
   const user = await User.findById(req.user);
   res.json({
     diplayName: user.username,
-    id: user._id;
+    id: user._id,
   });
 }
 module.exports = {
