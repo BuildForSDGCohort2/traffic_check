@@ -5,7 +5,14 @@ const controllers = require("../controllers/index");
 const { getUrlsAndPush } = require("../controllers/scrap");
 const { getNTSAdataReport } = require("../controllers/ntsaData");
 const router = express.Router();
-const { signUp, logIn, getAllUsers, deleteUser, tokenIsValid } = controllers.users;
+const {
+  signUp,
+  logIn,
+  getAllUsers,
+  deleteUser,
+  tokenIsValid,
+  loggedInUser,
+} = controllers.users;
 const {
   createAccidentCase,
   findOneAccident,
@@ -18,14 +25,15 @@ const { auth, admin } = middleware;
 router.get("/login", logIn);
 router.post("/sign-up", signUp);
 router.get("/users", auth, getAllUsers);
-router.delete('/delete_user', deleteUser)
-router.post('/tokenIsValid', tokenIsValid)
+router.delete("/delete_user", deleteUser);
+router.post("/tokenIsValid", tokenIsValid);
+router.get("/loggedIn_user", auth, loggedInUser);
 
 // Accident routes
-router.post("/report_incident", auth,createAccidentCase);
-router.get("/incident/:id",auth,  findOneAccident);
+router.post("/report_incident", auth, createAccidentCase);
+router.get("/incident/:id", auth, findOneAccident);
 router.get("/incidents", auth, getAllAccidents);
-router.delete("/delete_incident:id",auth ,admin, deleteAccident);
+router.delete("/delete_incident:id", auth, admin, deleteAccident);
 
 // SCRAP NTSA
 router.get("/scrap", getUrlsAndPush);

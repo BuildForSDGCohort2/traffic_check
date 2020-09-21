@@ -138,10 +138,16 @@ async function tokenIsValid(req, res) {
       .json({ error: "Error", message: "Failed authenticate user" });
   }
 }
+
+async function loggedInUser(req, res) {
+  const user = await User.findById(req.user);
+  res.json(user);
+}
 module.exports = {
   signUp,
   logIn,
   getAllUsers,
   deleteUser,
   tokenIsValid,
+  loggedInUser,
 };
