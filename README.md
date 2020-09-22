@@ -8,7 +8,7 @@
 
 logs in a user using the username and password, A user **token** is then generated for use to access the **routes**
 
-### "/api/sign-up"
+### "/api/register"
 
 signs up the user using:
 -firstname

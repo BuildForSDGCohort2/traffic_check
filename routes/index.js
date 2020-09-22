@@ -23,7 +23,7 @@ const { auth, admin } = middleware;
 
 // users routes
 router.get("/login", logIn);
-router.post("/sign-up", signUp);
+router.post("/register", signUp);
 router.get("/users", auth, getAllUsers);
 router.delete("/delete_user", deleteUser);
 router.post("/tokenIsValid", tokenIsValid);
