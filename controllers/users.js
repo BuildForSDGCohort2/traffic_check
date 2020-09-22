@@ -83,7 +83,6 @@ async function logIn(req, res) {
       user: {
         id: user._id,
         firstname: user.firstname,
-        email: user.email,
       },
     });
   } catch (error) {
@@ -142,7 +141,7 @@ async function tokenIsValid(req, res) {
 async function loggedInUser(req, res) {
   const user = await User.findById(req.user);
   res.json({
-    diplayName: user.username,
+    username: user.username,
     id: user._id,
   });
 }
