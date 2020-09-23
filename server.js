@@ -5,6 +5,7 @@ const path = require("path");
 const compression = require("compression");
 const morgan = require("morgan");
 const envs = require("./config");
+const cors = require('cors')
 
 // Envronment variables destructuring
 // const { mongoURI, the_port } = require("./config/key");
@@ -16,6 +17,7 @@ const app = express();
 // Body parser middleware
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 // const dev = app.get("env") !== "production";
 
