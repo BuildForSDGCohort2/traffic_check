@@ -10,7 +10,7 @@ const secret =
 async function signUp(req, res) {
   const { firstname, lastname, username, password, email, jobrole } = req.body;
   const checkFields =
-    firstname && lastname && username && email && password && jobrole;
+    firstname && lastname && username && email && password;
 
   // const userAlreadyExists = await userExists(email.trim());
   const existingUser = await User.findOne({ email: email });
