@@ -5,7 +5,7 @@ const path = require("path");
 const compression = require("compression");
 const morgan = require("morgan");
 const envs = require("./config");
-const cors = require('cors')
+const cors = require("cors");
 
 // Envronment variables destructuring
 // const { mongoURI, the_port } = require("./config/key");
@@ -17,13 +17,16 @@ const app = express();
 // Body parser middleware
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 
 // const dev = app.get("env") !== "production";
 
 // Connect to MongoDb
 mongoose
-  .connect(process.env.MONGODB_URI || envs.mongoURI,{ useUnifiedTopology: true, useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI || envs.mongoURI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() => console.log("mongo DB connected.... and this is nice"))
   .catch((err) => console.log(err));
 
@@ -37,6 +40,9 @@ mongoose
 let routes = require("./routes");
 
 const { onAuthenticated } = require("./modules/twitter");
+app.use("/", (req, res) => {
+  res.json({ message: "hello Welcome to the backend of traffic app: Kindly visit the repo on github for a list of API endpoints" });
+});
 
 app.use("/api/v1", routes);
 
