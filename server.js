@@ -40,9 +40,6 @@ mongoose
 let routes = require("./routes");
 
 const { onAuthenticated } = require("./modules/twitter");
-app.use("/", (req, res) => {
-  res.json({ message: "hello Welcome to the backend of traffic app: Kindly visit https://github.com/BuildForSDGCohort2/traffic_check for a list of API endpoints" });
-});
 
 app.use("/api/v1", routes);
 
