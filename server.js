@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { mongoURI } = require("./config");
+const envs = require("./config");
 const app = express();
+
 
 var corsOptions = {
   origin: "http://localhost:8081",
@@ -56,7 +57,7 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-  .connect(mongoURI, {
+  .connect(process.env.MONGODB_URI || envs.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

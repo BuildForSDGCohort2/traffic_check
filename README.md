@@ -11,8 +11,6 @@ logs in a user using the username and password, A user **token** is then generat
 ### "/api/register"
 
 signs up the user using:
--firstname
--lastname
 -username
 -email
 -password
@@ -41,13 +39,25 @@ Gets all the traffic incidents reported by users
 
 Deletes any specific traffic incident.
 
-### Methods	        Urls	            Actions
+### Methods Urls Actions
+
     -POST	    /api/auth/signup	    signup new account
     -POST	    /api/auth/signin	    login an account
     -GET	    /api/test/all	        retrieve public content
     -GET	    /api/test/user	        access User’s content
     -GET	    /api/test/mod	        access Moderator’s content
     -GET	    /api/test/admin	        access Admin’s content
+
+#### user signs up using:
+
+-username
+-email
+-password
+
+#### user signs in using:
+
+-username
+-password
 
 ### HOSTING
 
