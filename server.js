@@ -1,49 +1,84 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const path = require("path");
-const compression = require("compression");
-const morgan = require("morgan");
-const envs = require("./config");
+const mongoose = require("mongoose");
 const cors = require("cors");
-
-// Envronment variables destructuring
-// const { mongoURI, the_port } = require("./config/key");
-
-const Tweet = require("./modules/twitter");
-
+const { mongoURI } = require("./config");
 const app = express();
 
-// Body parser middleware
-app.use(bodyParser.json()); // for parsing application/json
+var corsOptions = {
+  origin: "http://localhost:8081",
+};
+
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+function initial() {
+  Role.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new Role({
+        name: "user",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
 
-// const dev = app.get("env") !== "production";
+        console.log("added 'user' to roles collection");
+      });
 
-// Connect to MongoDb
-mongoose
-  .connect(process.env.MONGODB_URI || envs.mongoURI, {
-    useUnifiedTopology: true,
+      new Role({
+        name: "moderator",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'moderator' to roles collection");
+      });
+
+      new Role({
+        name: "admin",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'admin' to roles collection");
+      });
+    }
+  });
+}
+
+const db = require("./models");
+const Role = db.role;
+
+db.mongoose
+  .connect(mongoURI, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .then(() => console.log("mongo DB connected.... and this is nice"))
-  .catch((err) => console.log(err));
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initial();
+  })
+  .catch((err) => {
+    console.error("Connection error", err);
+    process.exit();
+  });
 
-// Hello World
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to Team-176-Group-A application." });
+});
+// routes
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
 
-//app.get("/", (req, res) => {
-// return res.send({ message: new Tweet().follow() });
-//  return res.send({ message: "Welcome home" });
-//});
-
-let routes = require("./routes");
-
-const { onAuthenticated } = require("./modules/twitter");
-
-app.use("/api/v1", routes);
-
-const port = process.env.PORT || envs.PORT;
-// Server static assets if in production
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
