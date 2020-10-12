@@ -4,49 +4,50 @@
 
 ## users APIs
 
-### "/api/v1/login"
+### "/signin"
 
-logs in a user using the username and password, A user **token** is then generated for use to access the **routes**
+logs in a user using the email and password, A user **token** is then generated for use to access the **routes**
 
-### "/api/register"
+### "/signup"
 
 signs up the user using:
 -username
 -email
 -password
--jobrole
-jobrole is either a normal user or an admin
 
-### GET "/api/v1/users"
+### GET "/search-users"
 
 Gets all users in the database. This operation is only possible if you are an admin.
 
 ## Accident routes
 
-### POST "/api/v1/report_incident"
+### GET "/allpost"
 
-creates and accident case
+Gets all accident cases reported
 
-### GET "/api/v1/incident/:id"
+### GET "/getsubpost"
 
-gets one specific traffic incident
+gets an accident subpost
 
-### GET "/api/v1/incidents"
+### POST "/createpost"
 
-Gets all the traffic incidents reported by users
+Creates an incident
 
-### DELETE "/api/v1/delete_incident:id"
+### GET "/mypost"
 
-Deletes any specific traffic incident.
+Gets all posts that I have made previously
+
+### DELETE "/deletepost/:postId"
+
+Deletes a post made by the user
 
 ### Methods Urls Actions
 
-    -POST	    /api/auth/signup	    signup new account
-    -POST	    /api/auth/signin	    login an account
-    -GET	    /api/test/all	        retrieve public content
-    -GET	    /api/test/user	        access User’s content
-    -GET	    /api/test/mod	        access Moderator’s content
-    -GET	    /api/test/admin	        access Admin’s content
+    -POST	    /signup	        signup new account
+    -POST	    /signin	        login an account
+    -GET	    /allpost        retrieve public content
+    -GET	    /search-users	access User’s content
+    
 
 #### user signs up using:
 
@@ -56,7 +57,7 @@ Deletes any specific traffic incident.
 
 #### user signs in using:
 
--username
+-email
 -password
 
 ### HOSTING
