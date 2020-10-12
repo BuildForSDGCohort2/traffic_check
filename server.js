@@ -1,85 +1,39 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const envs = require("./config");
 const app = express();
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 5000;
+const { MONGOURI } = require("./config/keys");
 
+mongoose.connect(MONGOURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.connection.on("connected", () => {
+  console.log("connected to mongo yeahh");
+});
+mongoose.connection.on("error", (err) => {
+  console.log("err connecting", err);
+});
 
-var corsOptions = {
-  origin: "http://localhost:8081",
-};
+var cors = require("cors");
+app.use(cors());
 
-app.use(cors(corsOptions));
+require("./models/user");
+require("./models/post");
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(require("./routes/auth"));
+app.use(require("./routes/post"));
+app.use(require("./routes/user"));
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user",
-      }).save((err) => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "moderator",
-      }).save((err) => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
-
-      new Role({
-        name: "admin",
-      }).save((err) => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
-    }
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static("client/build"));
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
-const db = require("./models");
-const Role = db.role;
-
-db.mongoose
-  .connect(process.env.MONGODB_URI || envs.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-    initial();
-  })
-  .catch((err) => {
-    console.error("Connection error", err);
-    process.exit();
-  });
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Team-176-Group-A application." });
-});
-// routes
-require("./routes/auth.routes")(app);
-require("./routes/user.routes")(app);
-
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log("server is running on", PORT);
 });
