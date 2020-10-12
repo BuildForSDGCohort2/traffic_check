@@ -69,7 +69,7 @@ router.post("/signin", (req, res) => {
   }
   User.findOne({ email: email }).then((savedUser) => {
     if (!savedUser) {
-      return res.status(422).json({ error: "Invalid Email or password" });
+      return res.status(422).json({ error: "User not found!" });
     }
     bcrypt
       .compare(password, savedUser.password)
@@ -81,7 +81,7 @@ router.post("/signin", (req, res) => {
           res.json({
             token,
             user: { _id, name, email, followers, following, pic },
-            message: "User saved Successfully",
+            message: "User signed In Successfully",
           });
         } else {
           return res.status(422).json({ error: "Invalid Email or password" });
