@@ -5,13 +5,14 @@ const User = mongoose.model("User");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config/keys");
+// const { JWT_SECRET } = require("../config/keys");
 const requireLogin = require("../middleware/requireLogin");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 const { SENDGRID_API, EMAIL } = require("../config/keys");
 //const { login } = require("../controllers");
-//
+const JWT_SECRET =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjczMTM5Yjk1YzM4MjlhMDYxY2U0OCIsImlhdCI6MTYwMDYwNjA1OX0.6l3euPPO-Dy4YFiwRVLa_Hl94SVC8-olHdTGjyBfvT0";
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
